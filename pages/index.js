@@ -17,12 +17,14 @@ export default class extends React.Component {
 				<div>
 					<header>Podcastiny</header>
 
-					{ channels.map((channel) => (
+					<div className="channels">
+						{ channels.map((channel) => (
 						<div className="channel">
 							<img src={ channel.urls.logo_image.original} alt="" />
 							<h2>{ channel.title }</h2>
 						</div>
 						)) }
+					</div>
 
 					<style jsx global>{`
 						body {
@@ -39,6 +41,15 @@ export default class extends React.Component {
 							background: #8756ca;
 							padding: 15px;
 						}
+
+						/* CSS GRID */
+						.channels {
+							display: grid;
+							grid-gap: 15px;
+							padding: 15px;
+							grid-template-columns: repeat(auto-fill, minmax(120px, 1fr))
+						}
+
 						.channel {
 							display: block;
 							border-radius: 3px;
