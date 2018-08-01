@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev":"next",
+    "dev": "next",
     "build": "next build",
     "start": "next start"
   },
@@ -12,6 +12,7 @@
   "author": "Eduardo Rasgado Ruiz <eduardo.rasgado@hotmail.com> (https://lalodigitaliza.me)",
   "license": "MIT",
   "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
     "next": "^6.1.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1"
