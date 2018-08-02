@@ -26,7 +26,7 @@ export default class extends React.Component {
 							// prefetch solo carga html, css, js
 							// prefetch solo funciona en produccion
 							// npm run build && npm start
-							<Link key={channel.id} href="/channel" prefetch>
+							<Link key={channel.id} href={`/channel?id=${ channel.id }`} prefetch>
 								<div className="channel">
 									<img src={ channel.urls.logo_image.original} alt="" />
 									<h2>{ channel.title }</h2>
@@ -38,7 +38,7 @@ export default class extends React.Component {
 					<style jsx global>{`
 						body {
 							margin: 0;
-							font-family: system-ui;
+							font-family: Lato;
 							background: white;
 							text-align: center;
 						}
