@@ -13,21 +13,38 @@ export default class extends React.Component {
 
 		// https://api.audioboom.com/channels/4702115/audio_clips
 		let reqAudios = await fetch(`https://api.audioboom.com/channels/${idChannel}/audio_clips`)
-		// tomar la variable channel como un atributo
 		let dataAudios = await reqAudios.json()
 		let audioClips = dataAudios.body.audio_clips
 
-		return { channel, audioClips }
+		let reqSeries = await fetch(`https://api.audioboom.com/channels/${idChannel}/child_channels`)
+		let dataSeries = await reqSeries.json()
+		let series = dataSeries.body.channels
+
+		// retornar como parte de las props
+		return { channel, audioClips, series }
 	}
 
 	render () {
 
-		const { channel } = this.props
+		const { channel, audioClips, series } = this.props
 
 		return(
 				<div>
 				<header>Podcastiny</header>
 					<h1>{channel.title}</h1>
+
+					<h2>Series</h2>
+					{ series.map((serie) => (
+						<div>
+							{ serie.title }
+						</div>
+					))}
+					<h2>Últimos Podcast</h2>
+					{ audioClips.map((clip) => (
+						<div key={clip.id}>
+							{ clip.title }
+						</div>
+					))}
 
 					<style jsx>{`
 						header {

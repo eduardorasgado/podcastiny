@@ -10,6 +10,7 @@ export default class extends React.Component {
 		let req = await fetch('https://api.audioboom.com/channels/recommended')
 		let { body: channels } = await req.json()
 
+		// retornar como parte de las props
 		return { channels }
 	}
 	render() {
