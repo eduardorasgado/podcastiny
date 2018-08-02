@@ -1,14 +1,23 @@
 export default class extends React.Component {
 
+	// clonsumiendo API
 	static async getInitialProps({ query }) {
 		// si arriba en los parametros solo pasaramos data, entonces:
 		// let query = data.query
 		let idChannel = query.id
-		let req = await fetch(`https://api.audioboom.com/channels/${idChannel}`)
+		let reqChannel = await fetch(`https://api.audioboom.com/channels/${idChannel}`)
 		// tomar la variable channel como un atributo
-		let { body: { channel } } = await req.json()
+		// let { body: { channel } } = await req.json()  es lo mismo que:
+		let dataChannel = await reqChannel.json()
+		let channel = dataChannel.body.channel
 
-		return { channel }
+		// https://api.audioboom.com/channels/4702115/audio_clips
+		let reqAudios = await fetch(`https://api.audioboom.com/channels/${idChannel}/audio_clips`)
+		// tomar la variable channel como un atributo
+		let dataAudios = await reqAudios.json()
+		let audioClips = dataAudios.body.audio_clips
+
+		return { channel, audioClips }
 	}
 
 	render () {
