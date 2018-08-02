@@ -5,18 +5,21 @@ export default class extends React.Component {
 		// si arriba en los parametros solo pasaramos data, entonces:
 		// let query = data.query
 		let idChannel = query.id
-		let reqChannel = await fetch(`https://api.audioboom.com/channels/${idChannel}`)
-		// tomar la variable channel como un atributo
-		// let { body: { channel } } = await req.json()  es lo mismo que:
+
+		// espera a que terminen las tres request, carga la informacion y sigue
+		let [reqChannel, reqAudios, reqSeries] = await Promise.all([
+			fetch(`https://api.audioboom.com/channels/${idChannel}`),
+			fetch(`https://api.audioboom.com/channels/${idChannel}/audio_clips`),
+			fetch(`https://api.audioboom.com/channels/${idChannel}/child_channels`)
+		])
+
+		// ahora a construir las json para ocuparlas en el component
 		let dataChannel = await reqChannel.json()
 		let channel = dataChannel.body.channel
 
-		// https://api.audioboom.com/channels/4702115/audio_clips
-		let reqAudios = await fetch(`https://api.audioboom.com/channels/${idChannel}/audio_clips`)
 		let dataAudios = await reqAudios.json()
 		let audioClips = dataAudios.body.audio_clips
 
-		let reqSeries = await fetch(`https://api.audioboom.com/channels/${idChannel}/child_channels`)
 		let dataSeries = await reqSeries.json()
 		let series = dataSeries.body.channels
 
