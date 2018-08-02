@@ -1,5 +1,7 @@
 // gracias a esta libreria funciona fetch
 import 'isomorphic-fetch'
+//libreria para linkear componentes
+import Link from 'next/link'
 
 export default class extends React.Component {
 
@@ -19,10 +21,17 @@ export default class extends React.Component {
 
 					<div className="channels">
 						{ channels.map((channel) => (
-						<div className="channel">
-							<img src={ channel.urls.logo_image.original} alt="" />
-							<h2>{ channel.title }</h2>
-						</div>
+							// link permite prerenderizar del lado del cliente
+							// cuando hay que cargar algo liviano, prefetch ayuda a no cargar el getInitialProos
+							// prefetch solo carga html, css, js
+							// prefetch solo funciona en produccion
+							// npm run build && npm start
+							<Link key={channel.id} href="/channel" prefetch>
+								<div className="channel">
+									<img src={ channel.urls.logo_image.original} alt="" />
+									<h2>{ channel.title }</h2>
+								</div>
+							</Link>
 						)) }
 					</div>
 
