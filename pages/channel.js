@@ -2,6 +2,7 @@ import 'isomorphic-fetch'
 import Link from 'next/link'
 import Layout from '../components/Layout'
 import Series from '../components/Series'
+import Nav from '../components/Nav'
 
 export default class extends React.Component {
 
@@ -43,13 +44,8 @@ export default class extends React.Component {
 
 	      	<div className="banner" style={{ backgroundImage: `url(${channel.urls.banner_image.original})` }} />
 					
-					<nav>
-            <Link href={`/`}>
-              <a className='close'>&lt; Inicio</a>
-            </Link>
-          </nav>
+					<Nav link={`/`}/>
 					<h1>{channel.title}</h1>
-
 					<Series series={series}/>
 
 					<h2>Últimos Podcast</h2>
@@ -65,18 +61,6 @@ export default class extends React.Component {
 					))}
 
 					<style jsx>{`
-
-		        nav {
-		          background: none;
-		        }
-		        nav a {
-		          display: inline-block;
-		          padding: 15px;
-		          color: #0E111A;
-		          cursor: pointer;
-		          text-decoration: none;
-		        }
-
 		        .banner {
 		          width: 100%;
 		          padding-bottom: 25%;
@@ -85,23 +69,6 @@ export default class extends React.Component {
 		          background-color: #aaa;
 		        }
 
-		        .channels {
-		          display: grid;
-		          grid-gap: 15px;
-		          padding: 15px;
-		          grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-		        }
-		        a.channel {
-		          display: block;
-		          margin-bottom: 0.5em;
-		          color: #333;
-		          text-decoration: none;
-		        }
-		        .channel img {
-		          border-radius: 3px;
-		          box-shadow: 0px 2px 6px rgba(0,0,0,0.15);
-		          width: 100%;
-		        }
 		        h1 {
 		          font-weight: 600;
 		          padding: 15px;
