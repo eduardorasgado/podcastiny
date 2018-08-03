@@ -17,6 +17,8 @@ export default class extends React.Component {
 			// retornar como parte de las props
 			return { channels, statusCode: 200 }
 		} catch(e) {
+			// en caso de error
+			// tenemos que traer y cambiar res para cargar bien el Error
 			res.statusCode = 503
 			return { channels: null, statusCode: 503 }
 		}
@@ -26,8 +28,10 @@ export default class extends React.Component {
 		const { channels, statusCode } = this.props
 		// early return
 		if(statusCode !== 200) {
+			// error handling para error 503, no red
 			return <Error statusCode={ statusCode } />
 		}
+		
 		return (
 				<Layout title="Podcastiny">
 

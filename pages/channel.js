@@ -4,41 +4,55 @@ import Layout from '../components/Layout'
 import Series from '../components/Series'
 import Nav from '../components/Nav'
 import AudioClips from '../components/AudioClips'
+import Error from 'next/error'
 
 export default class extends React.Component {
 
 	// clonsumiendo API
-	static async getInitialProps({ query }) {
+	static async getInitialProps({ query, res }) {
 		// si arriba en los parametros solo pasaramos data, entonces:
 		// let query = data.query
 		let idChannel = query.id
+		try {
+			// espera a que terminen las tres request, carga la informacion y sigue
+			let [reqChannel, reqAudios, reqSeries] = await Promise.all([
+				fetch(`https://api.audioboom.com/channels/${idChannel}`),
+				fetch(`https://api.audioboom.com/channels/${idChannel}/audio_clips`),
+				fetch(`https://api.audioboom.com/channels/${idChannel}/child_channels`)
+			])
 
-		// espera a que terminen las tres request, carga la informacion y sigue
-		let [reqChannel, reqAudios, reqSeries] = await Promise.all([
-			fetch(`https://api.audioboom.com/channels/${idChannel}`),
-			fetch(`https://api.audioboom.com/channels/${idChannel}/audio_clips`),
-			fetch(`https://api.audioboom.com/channels/${idChannel}/child_channels`)
-		])
+			// ahora a construir las json para ocuparlas en el component
+			let [dataChannel, dataAudios, dataSeries] = await Promise.all([
+				reqChannel.json(),
+				reqAudios.json(),
+				reqSeries.json()
+			])
 
-		// ahora a construir las json para ocuparlas en el component
-		let [dataChannel, dataAudios, dataSeries] = await Promise.all([
-			reqChannel.json(),
-			reqAudios.json(),
-			reqSeries.json()
-		])
+			// extraemos los features que queremos de los json
+			let channel = dataChannel.body.channel
+			let audioClips = dataAudios.body.audio_clips
+			let series = dataSeries.body.channels
 
-		// extraemos los features que queremos de los json
-		let channel = dataChannel.body.channel
-		let audioClips = dataAudios.body.audio_clips
-		let series = dataSeries.body.channels
+			// retornar como parte de las props
+			return { channel, audioClips, series, statusCode: 200 }
 
-		// retornar como parte de las props
-		return { channel, audioClips, series }
+		} catch (e) {
+			// necesario para considerar de forma apropiada el error
+			res.statusCode = 503
+			return { channel: null, audioClips: null, series: null, statusCode: 503}
+		}
+	
 	}
 
 	render () {
 
-		const { channel, audioClips, series } = this.props
+		const { channel, audioClips, series, statusCode } = this.props
+
+		// early return
+		if(statusCode !== 200) {
+			// error handling para error 503, no red
+			return <Error statusCode={ statusCode } />
+		}
 
 		return(
 				<Layout title={channel.title} >
