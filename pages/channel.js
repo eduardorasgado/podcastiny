@@ -24,8 +24,11 @@ export default class extends React.Component {
 
 			// fetch handling para errores desde 400 al 500 etc
 			if (reqChannel.status >= 400) {
-				res.statusCode = 404
-				return { channel: null, audioClips: null, series: null, statusCode: 404}
+				res.statusCode = reqChannel.status
+				return { channel: null,
+								 audioClips: null,
+								 series: null,
+								 statusCode: reqChannel.status }
 			}
 
 			// ahora a construir las json para ocuparlas en el component
