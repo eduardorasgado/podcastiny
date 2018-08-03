@@ -5,6 +5,7 @@ export default class extends React.Component {
 
 	static async getInitialProps ({ query }) {
 			let idClip = query.id
+			// api a: https://api.audioboom.com/audio_clips/6908320
 			let req = await fetch(`https://api.audioboom.com/audio_clips/${idClip}.mp3`)
 			let clipjson = await req.json()
 			let clip = clipjson.body.audio_clip

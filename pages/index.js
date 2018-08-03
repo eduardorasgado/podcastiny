@@ -2,6 +2,7 @@
 import 'isomorphic-fetch'
 //libreria para linkear componentes
 import Link from 'next/link'
+import Layout from '../components/Layout'
 
 export default class extends React.Component {
 
@@ -17,9 +18,7 @@ export default class extends React.Component {
 		//const channels = this.props.channels
 		const { channels } = this.props
 		return (
-				<div>
-					<header>Podcastiny</header>
-
+				<Layout title="Podcastiny">
 					<div className="channels">
 						{ channels.map((channel) => (
 							// link permite prerenderizar del lado del cliente
@@ -35,15 +34,6 @@ export default class extends React.Component {
 							</Link>
 						)) }
 					</div>
-
-					<style jsx global>{`
-						body {
-							margin: 0;
-							font-family: Lato;
-							background: white;
-							text-align: center;
-						}
-					`}</style>
 
 					<style jsx>{`
 						header {
@@ -79,7 +69,7 @@ export default class extends React.Component {
 							text-align: center;
 						}
 					`}</style>
-				</div>
+				</Layout>
 			)
 	}
 }
