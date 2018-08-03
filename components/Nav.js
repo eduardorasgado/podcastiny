@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default class Nav extends React.Component {
 	render () {
-		const { children, link } = this.props
+		const { children, link, color } = this.props
 		return (
 				<div>
 					<nav>
@@ -14,11 +14,12 @@ export default class Nav extends React.Component {
           <style jsx>{`
           	nav {
 		          background: none;
+		          width: 40vw;
 		        }
 		        nav a {
 		          display: inline-block;
 		          padding: 15px;
-		          color: #0E111A;
+		          color: ${color};
 		          cursor: pointer;
 		          text-decoration: none;
 		        }

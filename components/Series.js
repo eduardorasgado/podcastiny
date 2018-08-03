@@ -11,7 +11,7 @@ export default class Series extends React.Component {
 							<h2>Series</h2>
 							<div>
 								{ series.map((serie) => (
-									<div className="channels" key="serie.id">
+									<div className="channels" key={serie.id}>
 										<Link href={`/channel?id=${serie.id}`}>
 											<a className="channel">
 												<img src={serie.urls.logo_image.original} />
