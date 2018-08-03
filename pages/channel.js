@@ -54,7 +54,7 @@ export default class extends React.Component {
 						<div>
 							<h2>Series</h2>
 							{ series.map((serie) => (
-								<div className="channels">
+								<div className="channels" key="serie.id">
 									<Link href={`/channel?id=${serie.id}`}>
 										<a className="channel">
 											<img src={serie.urls.logo_image.original} />
@@ -84,6 +84,17 @@ export default class extends React.Component {
 		          background: #8756ca;
 		          padding: 15px;
 		          text-align: center;
+		        }
+
+		        nav {
+		          background: none;
+		        }
+		        nav a {
+		          display: inline-block;
+		          padding: 15px;
+		          color: #0E111A;
+		          cursor: pointer;
+		          text-decoration: none;
 		        }
 
 		        .banner {
