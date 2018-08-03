@@ -28,6 +28,7 @@ export default class extends React.Component {
 		          </picture>
 
 		          <Player clip={clip}/>
+		          
 		        </div>
 		      </div>
 

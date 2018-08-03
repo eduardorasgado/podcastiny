@@ -5,7 +5,7 @@ export default class Player extends React.Component {
 				<div className='player'>
           <h3>{clip.title}</h3>
           <h6>{clip.channel.title}</h6>
-          <audio controls autoPlay={true}>
+          <audio controls autoPlay={false}>
             <source src={clip.urls.high_mp3} type='audio/mpeg' />
           </audio>
 
