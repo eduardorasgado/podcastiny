@@ -1,3 +1,4 @@
+// libreria importante para que fetch funcione correctamente
 import 'isomorphic-fetch'
 import Link from 'next/link'
 import Layout from '../components/Layout'
@@ -20,6 +21,12 @@ export default class extends React.Component {
 				fetch(`https://api.audioboom.com/channels/${idChannel}/audio_clips`),
 				fetch(`https://api.audioboom.com/channels/${idChannel}/child_channels`)
 			])
+
+			// fetch handling para errores desde 400 al 500 etc
+			if (reqChannel.status >= 400) {
+				res.statusCode = 404
+				return { channel: null, audioClips: null, series: null, statusCode: 404}
+			}
 
 			// ahora a construir las json para ocuparlas en el component
 			let [dataChannel, dataAudios, dataSeries] = await Promise.all([
