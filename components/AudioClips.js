@@ -18,13 +18,7 @@ export default class Podcasts extends React.Component {
 					))}
 
 					<style jsx>{`
-						h2 {
-		          padding: 5px;
-		          font-size: 1.5em;
-		          font-weight: 600;
-		          margin: 0;
-		          text-align: center;
-		        }
+						
 						.podcast {
 		          display: block;
 		          text-decoration: none;
