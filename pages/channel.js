@@ -64,6 +64,7 @@ export default class extends React.Component {
 		          font-weight: 600;
 		          padding: 15px;
 		        }
+
 		        :global(h2) {
 		          padding: 5px;
 		          font-size: 1.5em;

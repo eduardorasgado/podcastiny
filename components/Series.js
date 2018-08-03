@@ -9,16 +9,18 @@ export default class Series extends React.Component {
 						series.length > 0 &&
 						<div>
 							<h2>Series</h2>
-							{ series.map((serie) => (
-								<div className="channels" key="serie.id">
-									<Link href={`/channel?id=${serie.id}`}>
-										<a className="channel">
-											<img src={serie.urls.logo_image.original} />
-											<h2>{ serie.title }</h2>
-										</a>
-									</Link>
-								</div>
-							))}
+							<div>
+								{ series.map((serie) => (
+									<div className="channels" key="serie.id">
+										<Link href={`/channel?id=${serie.id}`}>
+											<a className="channel">
+												<img src={serie.urls.logo_image.original} />
+												<h2>{ serie.title }</h2>
+											</a>
+										</Link>
+									</div>
+								))}
+							</div>
 						</div>
 					}
 
@@ -30,15 +32,10 @@ export default class Series extends React.Component {
 		          grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
 		        }
 
-		        .channel {
-							display: block;
-							border-radius: 3px;
-							box-shadow: 0px 2px 6px rgba(0,0,0, 0.15);
-							margin-bottom: 0.5em;
-						}
-
 		        a.channel {
 		          display: block;
+		          margin: 0px;
+		          padding: 0px;
 		          margin-bottom: 0.5em;
 		          color: #333;
 		          text-decoration: none;

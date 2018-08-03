@@ -12,10 +12,10 @@ export default class ChannelGrid extends React.Component {
 						// prefetch solo funciona en produccion
 						// npm run build && npm start
 						<Link key={channel.id} href={`/channel?id=${ channel.id }`} prefetch>
-							<div className="channel">
+							<a className="channel">
 								<img src={ channel.urls.logo_image.original} alt="" />
 								<h2>{ channel.title }</h2>
-							</div>
+							</a>
 						</Link>
 					)) }
 
@@ -28,11 +28,12 @@ export default class ChannelGrid extends React.Component {
 						grid-template-columns: repeat(auto-fill, minmax(160px, 1fr))
 					}
 
-					.channel {
+					a.channel {
 						display: block;
 						border-radius: 3px;
 						box-shadow: 0px 2px 6px rgba(0,0,0, 0.15);
 						margin-bottom: 0.5em;
+						text-decoration: none;
 					}
 
 					.channel img {
@@ -45,6 +46,7 @@ export default class ChannelGrid extends React.Component {
 						font-weight: 600;
 						margin: 0;
 						text-align: center;
+						color: black;
 					}
 				`}</style>
 			</div>
