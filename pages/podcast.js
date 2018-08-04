@@ -3,20 +3,37 @@ import Link from 'next/link'
 import Layout from '../components/Layout'
 import Nav from '../components/Nav'
 import Player from '../components/Player'
+import Error from './_error'
 
 export default class extends React.Component {
 
-	static async getInitialProps ({ query }) {
+	static async getInitialProps ({ query, res }) {
 			let idClip = query.id
-			// api a: https://api.audioboom.com/audio_clips/6908320
-			let req = await fetch(`https://api.audioboom.com/audio_clips/${idClip}.mp3`)
-			let clipjson = await req.json()
-			let clip = clipjson.body.audio_clip
-			return { clip }
+			try {
+				// api a: https://api.audioboom.com/audio_clips/6908320
+				let req = await fetch(`https://api.audioboom.com/audio_clips/${idClip}.mp3`)
+				if (req.status >= 400) {
+				res.statusCode = req.status
+				return { clip: null,
+								 statusCode: req.status }
+			}
+				let clipjson = await req.json()
+				let clip = clipjson.body.audio_clip
+				return { clip, statusCode: 200 }
+			} catch (e) {
+				return { clip: null, statusCode: 503}
+			}
 	}
 
 	render() {
-		const { clip } = this.props
+		const { clip, statusCode } = this.props
+
+		// early return
+		if(statusCode !== 200) {
+			// error handling para error 503, no red
+			return <Error statusCode={ statusCode } />
+		}
+
 		return (
 				<Layout title={`${clip.channel.title}: ${clip.title}`}>
 		      <div className='modal'>
