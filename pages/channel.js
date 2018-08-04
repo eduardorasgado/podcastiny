@@ -5,6 +5,7 @@ import Layout from '../components/Layout'
 import Series from '../components/Series'
 import Nav from '../components/Nav'
 import AudioClips from '../components/AudioClips'
+// custom error handling
 import Error from './_error'
 
 export default class extends React.Component {
