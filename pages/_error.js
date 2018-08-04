@@ -32,11 +32,10 @@ export default class Error extends React.Component {
          }
         <style jsx>{`
           .message {
-            margin-top: 20vh;
+            padding: 100px 30px;
           }
           p {
             color: black;
-            width: 90vw;
             margin: auto;
           }
           a.enlace {
@@ -44,6 +43,13 @@ export default class Error extends React.Component {
           }
           button {
             margin-top: 50px;
+            color: white;
+            background-color: #8756ca;
+            border: none;
+            padding: 10px;
+            font-size: 1.1em;
+            border-radius: 10px;
+            cursor: pointer;
           }
         `}</style>
       </Layout>
