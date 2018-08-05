@@ -1,4 +1,6 @@
-import Link from 'next/link'
+// import Link from 'next/link'
+// links de next routes
+import { Link } from '../routes'
 
 export default class ChannelGrid extends React.Component {
 	render () {
@@ -11,7 +13,21 @@ export default class ChannelGrid extends React.Component {
 						// prefetch solo carga html, css, js
 						// prefetch solo funciona en produccion
 						// npm run build && npm start
-						<Link key={channel.id} href={`/channel?id=${ channel.id }`} prefetch>
+						// link normal de next--->
+						// <Link key={channel.id} href={`/channel?id=${ channel.id }`} prefetch>
+						// 	<a className="channel">
+						// 		<img src={ channel.urls.logo_image.original} alt="" />
+						// 		<h2>{ channel.title }</h2>
+						// 	</a>
+						// </Link>
+						// link de next routes--->
+						<Link key={channel.id} 
+									route="channel"
+									params={{ 
+										slug: channel.title.toLowerCase().split(" ").join("-"),
+										id: channel.id 
+									}} 
+									prefetch>
 							<a className="channel">
 								<img src={ channel.urls.logo_image.original} alt="" />
 								<h2>{ channel.title }</h2>
