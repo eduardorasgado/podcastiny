@@ -38,7 +38,7 @@ export default class extends React.Component {
 				<Layout title={`${clip.channel.title}: ${clip.title}`}>
 		      <div className='modal'>
 		        <div className='clip'>
-		        	<Nav link={`/channel?id=${clip.channel.id}`}
+		        	<Nav channel={ clip.channel }
 		        				color={`white`}
 		        				linkName={`Volver`}/>
 		          

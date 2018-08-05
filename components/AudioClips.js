@@ -4,7 +4,7 @@ import { Link } from '../routes'
 // slug ayuda a convertir los nombres a strings permitidos por el url
 import slug from '../helpers/slug'
 
-export default class Podcasts extends React.Component {
+export default class AudioClips extends React.Component {
 	render() {
 		const { children, audioClips} = this.props
 		return (

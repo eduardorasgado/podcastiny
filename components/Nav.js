@@ -1,14 +1,28 @@
-import Link from 'next/link'
+// import Link from 'next/link'
+import { Link } from '../routes'
+import slug from '../helpers/slug'
 
 export default class Nav extends React.Component {
 	render () {
-		const { children, link, color, linkName } = this.props
+		const { children, channel, color, linkName } = this.props
 		return (
 				<div>
 					<nav>
-            <Link href={link}>
-              <a className='close'>&lt; {linkName}</a>
+            { channel == "" ? 
+            <Link href={ "/" }>
+            	<a className='close'>&lt; {linkName}</a>
             </Link>
+            	:
+            	<Link key={channel.id} 
+									route="channel"
+									params={{ 
+										slug: slug(channel.title),
+										id: channel.id 
+									}} 
+									prefetch>
+              		<a className='close'>&lt; {linkName}</a>
+            	</Link>
+            }
           </nav>
 
           <style jsx>{`

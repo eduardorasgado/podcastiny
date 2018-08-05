@@ -4,11 +4,18 @@ import Link from 'next/link'
 import Layout from '../components/Layout'
 import ChannelGrid from '../components/ChannelGrid'
 import Nav from '../components/Nav'
-import AudioClips from '../components/AudioClips'
+// import AudioClips from '../components/AudioClips'
+import PodcastListWithClick from '../components/PodcastListWithClick'
 // custom error handling
 import Error from './_error'
 
 export default class extends React.Component {
+	constructor(props){
+		super(props)
+		this.state = {
+			openPodcast: null
+		}
+	}
 
 	// clonsumiendo API
 	static async getInitialProps({ query, res }) {
@@ -55,9 +62,19 @@ export default class extends React.Component {
 	
 	}
 
+	// evento de click
+	openPodcast = (event, podcast) => {
+		event.preventDefault()
+		console.log("opened!!!!!!!!!!")
+		this.setState({
+			openPodcast: podcast
+		})
+	}
+
 	render () {
 
 		const { channel, audioClips, series, statusCode } = this.props
+		const { openPodcast } = this.state
 
 		// early return
 		if(statusCode !== 200) {
@@ -70,11 +87,16 @@ export default class extends React.Component {
 
 	      	<div className="banner" style={{ backgroundImage: `url(${channel.urls.banner_image.original})` }} />
 					
-					<Nav link={`/`} color={`#0E111A`} linkName={`Inicio`}/>
+					<Nav channel={``} color={`#0E111A`} linkName={`Inicio`}/>
+
+					{ openPodcast && <div>Hay un podcast abierto</div> }
+
 					<h1>{channel.title}</h1>
 					<ChannelGrid channels={series}/>
 
-					<AudioClips audioClips={audioClips}/>
+					<h2>Últimos Podcast</h2>
+					<PodcastListWithClick podcasts={ audioClips }
+																onClickPodcast={ this.openPodcast }/>
 
 					<style jsx>{`
 		        .banner {
