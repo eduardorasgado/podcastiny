@@ -11,7 +11,9 @@ export default class Layout extends React.Component {
 					<title>{title}</title>
 				</Head>
 				<header><Link href="/"><a>Podcastiny</a></Link></header>
-				{ children }
+				<div className="container">
+					{ children }
+				</div>
 				<style jsx global>{`
 						body {
 							margin: 0;
@@ -22,11 +24,18 @@ export default class Layout extends React.Component {
 				`}</style>
 
 				<style jsx>{`
+					.container {
+						margin-top:50px;
+					}
 					header {
-							color: #fff;
-							background: #8756ca;
-							padding: 15px;
-						}
+						position: fixed;
+						top: 0;
+						color: #fff;
+						background: #8756ca;
+						padding: 16px;
+						padding-left: 0;
+						width: 100%;
+					}
 
 					header a {
 						color #fff;
