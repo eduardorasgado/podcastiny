@@ -6,6 +6,7 @@ import ChannelGrid from '../components/ChannelGrid'
 import Nav from '../components/Nav'
 // import AudioClips from '../components/AudioClips'
 import PodcastListWithClick from '../components/PodcastListWithClick'
+import PodcastPlayer from '../components/PodcastPlayer'
 // custom error handling
 import Error from './_error'
 
@@ -65,9 +66,16 @@ export default class extends React.Component {
 	// evento de click
 	openPodcast = (event, podcast) => {
 		event.preventDefault()
-		console.log("opened!!!!!!!!!!")
 		this.setState({
 			openPodcast: podcast
+		})
+	}
+
+	// cerrar el modal podcast
+	closePodcast = (event) => {
+		event.preventDefault()
+		this.setState({
+			openPodcast: null
 		})
 	}
 
@@ -89,7 +97,12 @@ export default class extends React.Component {
 					
 					<Nav channel={``} color={`#0E111A`} linkName={`Inicio`}/>
 
-					{ openPodcast && <div>Hay un podcast abierto</div> }
+					{ openPodcast && 
+						<div className="modal">
+							<PodcastPlayer 
+									clip={ openPodcast } 
+									onClose={ this.closePodcast }/>
+						</div> }
 
 					<h1>{channel.title}</h1>
 					<ChannelGrid channels={series}/>
@@ -119,6 +132,17 @@ export default class extends React.Component {
 		          margin: 0;
 		          text-align: center;
 		        }
+
+		        .modal {
+		          position: fixed;
+		          top: 0;
+		          left: 0;
+		          right: 0;
+		          bottom: 0;
+		          background: white;
+		          z-index: 99999;
+		        }
+
 		      `}</style>
 
       <style jsx global>{`

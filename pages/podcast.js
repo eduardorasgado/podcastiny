@@ -1,3 +1,6 @@
+// este componente fue deprecado por la implementacion
+// de PodcastPlayer
+
 import 'isomorphic-fetch'
 import Link from 'next/link'
 import Layout from '../components/Layout'
