@@ -1,4 +1,8 @@
-import Link from 'next/link'
+// import Link from 'next/link'
+// link de next router, funciona desde server.js y routes.js
+import { Link } from '../routes'
+// slug ayuda a convertir los nombres a strings permitidos por el url
+import slug from '../helpers/slug'
 
 export default class Podcasts extends React.Component {
 	render() {
@@ -7,7 +11,15 @@ export default class Podcasts extends React.Component {
 				<div>
 					<h2>Últimos Podcast</h2>
 					{ audioClips.map((clip) => (
-						<Link key={clip.id} href={`/podcast?id=${clip.id}`}>
+						<Link key={clip.id}
+									route="podcast"
+									params={{
+										slug: slug(clip.title),
+										id: clip.id,
+										slugChannel: slug(clip.channel.title),
+										idChannel: clip.channel.id
+									}}
+									prefetch>
 							<a className="podcast">
 								<h3>{ clip.title }</h3>
 								<div className="meta">

@@ -1,6 +1,7 @@
 // import Link from 'next/link'
 // links de next routes
 import { Link } from '../routes'
+import slug from '../helpers/slug'
 
 export default class ChannelGrid extends React.Component {
 	render () {
@@ -24,7 +25,7 @@ export default class ChannelGrid extends React.Component {
 						<Link key={channel.id} 
 									route="channel"
 									params={{ 
-										slug: channel.title.toLowerCase().split(" ").join("-"),
+										slug: slug(channel.title),
 										id: channel.id 
 									}} 
 									prefetch>

@@ -2,7 +2,7 @@
 import 'isomorphic-fetch'
 import Link from 'next/link'
 import Layout from '../components/Layout'
-import Series from '../components/Series'
+import ChannelGrid from '../components/ChannelGrid'
 import Nav from '../components/Nav'
 import AudioClips from '../components/AudioClips'
 // custom error handling
@@ -72,7 +72,7 @@ export default class extends React.Component {
 					
 					<Nav link={`/`} color={`#0E111A`}/>
 					<h1>{channel.title}</h1>
-					<Series series={series}/>
+					<ChannelGrid channels={series}/>
 
 					<AudioClips audioClips={audioClips}/>
 
