@@ -2,12 +2,12 @@ import Link from 'next/link'
 
 export default class Nav extends React.Component {
 	render () {
-		const { children, link, color } = this.props
+		const { children, link, color, linkName } = this.props
 		return (
 				<div>
 					<nav>
             <Link href={link}>
-              <a className='close'>&lt; Inicio</a>
+              <a className='close'>&lt; {linkName}</a>
             </Link>
           </nav>
 

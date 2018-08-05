@@ -70,7 +70,7 @@ export default class extends React.Component {
 
 	      	<div className="banner" style={{ backgroundImage: `url(${channel.urls.banner_image.original})` }} />
 					
-					<Nav link={`/`} color={`#0E111A`}/>
+					<Nav link={`/`} color={`#0E111A`} linkName={`Inicio`}/>
 					<h1>{channel.title}</h1>
 					<ChannelGrid channels={series}/>
 
