@@ -1,5 +1,15 @@
 import Link from 'next/link'
 import Head from 'next/head'
+import NProgress from 'nprogress'
+// importante para que funcione la barra de estado
+import Router from 'next/router'
+// here is nprogress for next
+// https://github.com/zeit/next.js/blob/canary/examples/with-loading/components/Header.js
+Router.onRouteChangeStart = (url) => {
+  NProgress.start()
+} 
+Router.onRouteChangeComplete = () => NProgress.done()
+Router.onRouteChangeError = () => NProgress.done()
 
 export default class Layout extends React.Component {
 	render() {
