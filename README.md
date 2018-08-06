@@ -3,6 +3,8 @@ Podcastiny is a web app for podcast and audio streaming. Created using NextJS an
 It uses [AudioBoom](https://api.audioboom.com/) API\
 ![Captura de Podcastiny](./.readme-static/shot1.png)
 
+[Ver la aplicación](https://podcasts-nsgvextlwc.now.sh)
+
 ## Cómo funcioná?
 Requiere Node.JS >= v10
 
